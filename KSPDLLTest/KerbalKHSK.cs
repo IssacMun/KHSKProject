@@ -10,7 +10,7 @@ namespace KHSKController
     public class KerbalKHSK : PartModule
     {
         /// <summary>
-        /// Variables
+        /// Variables as
         /// </summary>
         public KerbalEVA currentKerbal;
         public ModuleInventoryPart kerbalInventory;
