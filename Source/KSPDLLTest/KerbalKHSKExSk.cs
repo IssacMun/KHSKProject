@@ -47,6 +47,14 @@ namespace KHSKController
 
         //--------------Propoties----------------------
         private const float defualtConstructionWeightLimit = 588.399f;
+        private const float defaultPerKerbalConstructionWeightLimit = defualtConstructionWeightLimit;
+        public float nowPerKerbalConstructionWeightLimit;
+
+        Func<Vessel, bool> TestVesselFindKerbals = delegate (Vessel ves) { return ves.isEVA; };
+        List<Vessel> kerbalsLoaded = new List<Vessel>();
+        private float totalPerKerbalLiftWeight;
+        private KerbalKHSKExSk otherKHSKKerbalModule;
+        private uint kerbalCounter = 0;
 
         //-----------------exSkeleton----------------------------
         public bool hasExoSkeleton = false;
@@ -70,6 +78,8 @@ namespace KHSKController
             liftMuilty = exoSkModule.liftMuilty;
             bumpStartDis = 0.016f;
             bumpScaleFactor = 30;
+
+            nowPerKerbalConstructionWeightLimit = defaultPerKerbalConstructionWeightLimit * liftMuilty;
 
             exoSkeleton = InitalizeGameObject(exoPartName, kerbalSpine, mainBodyPos, mainBodyRot, currentKerbal.transform, aviPartExoSk);
             if (exoSkeleton == null)
@@ -142,6 +152,27 @@ namespace KHSKController
         {
             if (switcher)
             {
+                kerbalCounter = 0;
+                totalPerKerbalLiftWeight = 0;
+                kerbalsLoaded = FlightGlobals.FindNearestVesselWhere(currentKerbal.transform.position, TestVesselFindKerbals);
+                foreach (Vessel ves in kerbalsLoaded)
+                {
+                    bool v = Vector3.Distance(part.transform.position, ves.transform.position) < GameSettings.EVA_CONSTRUCTION_RANGE;
+                    if (v && ves != this.vessel)
+                    {
+                        otherKHSKKerbalModule = ves.FindPartModuleImplementing<KerbalKHSKExSk>();
+                        totalPerKerbalLiftWeight += otherKHSKKerbalModule.nowPerKerbalConstructionWeightLimit;
+                        kerbalCounter++;
+                    }
+                }
+
+                ScreenMessages.PostScreenMessage("Assets Kerbal Num= " + kerbalCounter);
+
+                if (kerbalCounter != 0)
+                    PhysicsGlobals.ConstructionWeightLimitPerKerbalCombine = totalPerKerbalLiftWeight / kerbalCounter;
+                else
+                    PhysicsGlobals.ConstructionWeightLimitPerKerbalCombine = defaultPerKerbalConstructionWeightLimit;
+
                 PhysicsGlobals.ConstructionWeightLimit = defualtConstructionWeightLimit * liftMuilty;
             }
             else

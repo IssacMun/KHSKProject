@@ -246,7 +246,7 @@ namespace KHSKController
         {
             hasExBpk = kerbalInventory.ContainsPart(infBpkPartName);
 
-            if(hasExBpk)
+            if (hasExBpk)
             {
                 ///Backpack Display Logic
                 ToggleRenderer(false, kerbalBackpackSlimSTRenderer, kerbalBackpackSlimRenderer);
@@ -262,6 +262,7 @@ namespace KHSKController
                 {
                     ExBpkUpdate();
                 }
+
             }
             else
             {

@@ -32,48 +32,6 @@ namespace KHSKController
             return bone;
         }
 
-        
-        /*public void LoopBonePathShowMore(Transform rootBone)
-        {
-            foreach (Transform a in rootBone)
-            {
-                Debug.LogFormat("[KHS DEBUG] [0]{0}={1}", a.name, rootBone.name);
-                foreach (Transform b in a)
-                {
-                    Debug.LogFormat("[KHS DEBUG] [1]{0}={2}/{1}", b.name, a.name, rootBone.name);
-                    foreach (Transform c in b)
-                    {
-                        Debug.LogFormat("[KHS DEBUG] [2]{0}={3}/{2}/{1}", c.name, b.name, a.name, rootBone.name);
-                        foreach (Transform d in c)
-                        {
-                            Debug.LogFormat("[KHS DEBUG] [3]{0}={4}/{3}/{2}/{1}", d.name, c.name, b.name, a.name, rootBone.name);
-                            foreach (Transform e in d)
-                            {
-                                Debug.LogFormat("[KHS DEBUG] [4]{0}={5}/{4}/{3}/{2}/{1}", e.name, d.name, c.name, b.name, a.name, rootBone.name);
-                                foreach (Transform f in e)
-                                {
-                                    Debug.LogFormat("[KHS DEBUG] [5]{0}={6}/{5}/{4}/{3}/{2}/{1}", f.name, e.name, d.name, c.name, b.name, a.name, rootBone.name);
-                                    foreach (Transform g in f)
-                                    {
-                                        Debug.LogFormat("[KHS DEBUG] [6]{0}={7}/{6}/{5}/{4}/{3}/{2}/{1}", g.name, f.name, e.name, d.name, c.name, b.name, a.name, rootBone.name);
-                                        foreach (Transform h in g)
-                                        {
-                                            Debug.LogFormat("[KHS DEBUG] [7]{0}={8}/{7}/{6}/{5}/{4}/{3}/{2}/{1}", h.name, g.name, f.name, e.name, d.name, c.name, b.name, a.name, rootBone.name);
-                                            foreach (Transform i in h)
-                                            {
-                                                Debug.LogFormat("[KHS DEBUG] [8]{0}={9}/{8}/{7}/{6}/{5}/{4}/{3}/{2}/{1}", i.name, h.name, g.name, f.name, e.name, d.name, c.name, b.name, a.name, rootBone.name);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        */
-
         /// <summary>
         /// use PartLoader to get part
         /// </summary>
@@ -154,23 +112,6 @@ namespace KHSKController
             }
         }
 
-        /*public static void UpdateGameObjectTransformByAnchor(Transform currentObject, Transform anchorTransform,
-                                                Vector3 toolPosVector, Vector3 toolRotateVector)
-        {
-            if (currentObject != null && anchorTransform != null)
-            {
 
-                currentObject.position = anchorTransform.TransformPoint(toolPosVector);
-                currentObject.rotation = anchorTransform.rotation * Quaternion.Euler(toolRotateVector);
-            }
-            else
-            {
-                if (currentObject == null)
-                    Debug.LogWarning("[KHSK] [UpdatePart] 'currentObject' is not exsist!");
-                if (anchorTransform == null)
-                    Debug.LogWarning("[KHSK] [UpdatePart] 'anchorObject' is not exsist!");
-            }
-
-        }*/
     }
 }
